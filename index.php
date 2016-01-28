@@ -61,7 +61,29 @@
 								get_template_part( 'content', get_post_format() );
 							endwhile;
 							// Previous/next post navigation.
+							?>
+							<nav class="jm-nav mdl-cell mdl-cell--12-col">
+								<div class="section-spacer"></div>
+								<?php $prev_post = get_adjacent_post(false, '', true);
+ 								if($prev_post) $prev_post_url = get_permalink($prev_post->ID); ?>
+ 								<?php $next_post = get_adjacent_post(false, '', false);
+ 								if($next_post) $next_post_url = get_permalink($next_post->ID); ?>
 
+								<a href="<?php echo $prev_post_url; ?>" class="jm-nav__button" title="show more">
+								<div class="mdl-layout-spacer">
+									<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+										<i class="material-icons" role="presentation">arrow_backward</i>
+									</button>
+
+									<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+										<i class="material-icons" role="presentation">arrow_forward</i>
+									</button>
+									</div>
+								</a>
+							</nav>
+
+							
+							<?php
 						else :
 							// If no content, include the "No posts found" template.
 							get_template_part( 'content', 'none' );
