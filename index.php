@@ -62,27 +62,21 @@
 							endwhile;
 							// Previous/next post navigation.
 							?>
-							<nav class="jm-nav mdl-cell mdl-cell--12-col">
-								<div class="section-spacer"></div>
-								<?php $prev_post = get_adjacent_post(false, '', true);
- 								if($prev_post) $prev_post_url = get_permalink($prev_post->ID); ?>
- 								<?php $next_post = get_adjacent_post(false, '', false);
- 								if($next_post) $next_post_url = get_permalink($next_post->ID); ?>
+								<nav class="jm-nav mdl-cell mdl-cell--12-col">
+									<?php $npl = explode('"', get_next_posts_link()); $npl_url = $npl[1]; ?>
+									<a href="<?php echo $npl_url; ?>" class="jm-nav__button" title="Older posts">
+										<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+											<i class="material-icons" role="presentation">arrow_backward</i>
+										</button>
+									</a>
 
-								<a href="<?php echo $prev_post_url; ?>" class="jm-nav__button" title="show more">
-								<div class="mdl-layout-spacer">
-									<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-										<i class="material-icons" role="presentation">arrow_backward</i>
-									</button>
-
-									<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-										<i class="material-icons" role="presentation">arrow_forward</i>
-									</button>
-									</div>
-								</a>
-							</nav>
-
-							
+									<?php $ppl = explode('"', get_previous_posts_link()); $ppl_url = $ppl[1]; ?>
+									<a href="<?php echo $ppl_url; ?>" class="jm-nav__button" title="Newer posts">
+										<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+											<i class="material-icons" role="presentation">arrow_forward</i>
+										</button>
+									</a>
+								</nav>
 							<?php
 						else :
 							// If no content, include the "No posts found" template.
@@ -93,6 +87,25 @@
 				</div>
 			</main>
 		</div>
+		<footer class="mdl-mini-footer">
+		<div class="mdl-mini-footer--left-section">
+			<button class="mdl-mini-footer--social-btn social-btn social-btn__twitter">
+				<span class="visuallyhidden">Twitter</span>
+			</button>
+			<button class="mdl-mini-footer--social-btn social-btn social-btn__blogger">
+				<span class="visuallyhidden">Facebook</span>
+			</button>
+			<button class="mdl-mini-footer--social-btn social-btn social-btn__gplus">
+				<span class="visuallyhidden">Google Plus</span>
+			</button>
+		</div>
+		<div class="mdl-mini-footer--right-section">
+			<button class="mdl-mini-footer--social-btn social-btn__share">
+				<i class="material-icons" role="presentation">share</i>
+				<span class="visuallyhidden">share</span>
+			</button>
+		</div>
+		</footer>
     	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
     	<?php wp_footer(); ?>
   	</body>
